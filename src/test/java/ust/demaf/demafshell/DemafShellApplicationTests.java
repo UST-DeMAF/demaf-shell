@@ -1,9 +1,9 @@
 package ust.demaf.demafshell;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+import org.junit.jupiter.api.Test;
+
+
 class DemafShellApplicationTests {
 
 	@Test
