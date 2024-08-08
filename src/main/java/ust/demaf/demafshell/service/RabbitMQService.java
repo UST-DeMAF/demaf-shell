@@ -21,12 +21,17 @@ public class RabbitMQService {
     private final RabbitAdmin rabbitAdmin;
     private final String username;
     private final String password;
+    private final String url;
 
     @Autowired
-    public RabbitMQService(RabbitAdmin rabbitAdmin, @Value("${spring.rabbitmq.username}") String username, @Value("${spring.rabbitmq.password}") String password) {
+    public RabbitMQService(RabbitAdmin rabbitAdmin,
+                           @Value("${spring.rabbitmq.username}") String username,
+                           @Value("${spring.rabbitmq.password}") String password,
+                           @Value("${spring.rabbitmq.url}") String url) {
         this.rabbitAdmin = rabbitAdmin;
         this.username = username;
         this.password = password;
+        this.url = url;
     }
 
     /**
@@ -38,7 +43,6 @@ public class RabbitMQService {
     public List<String> getQueueNames() {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getInterceptors().add(new BasicAuthenticationInterceptor(username, password));
-        String url = "http://localhost:15672/api/queues";
         ResponseEntity<List> response = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<>(new HttpHeaders()), List.class);
         List<Map<String, Object>> queues = response.getBody();
         List<String> queueNames = new ArrayList<>();

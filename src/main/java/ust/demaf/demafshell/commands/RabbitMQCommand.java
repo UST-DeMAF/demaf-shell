@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellCommandGroup;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
-import org.springframework.shell.standard.ShellOption;
 import ust.demaf.demafshell.service.RabbitMQService;
 
 import java.util.List;
@@ -17,6 +16,14 @@ public class RabbitMQCommand {
 
     @Autowired
     private RabbitAdmin rabbitAdmin;
+
+    /**
+     * Purges the specified RabbitMQ queue.
+     * The queue can be identified either by its name or by its position in the list of queues.
+     *
+     * @param queueIdentifier the name or position of the queue to purge.
+     * @return a message indicating the result of the purge operation.
+     */
 
     @ShellMethod("Purge the message queue.")
     public String purge(String queueIdentifier) {
@@ -38,6 +45,12 @@ public class RabbitMQCommand {
         rabbitAdmin.purgeQueue(queueName, false);
         return "Queue " + queueName + " purged.";
     }
+
+    /**
+     * Lists all available RabbitMQ queues.
+     *
+     * @return a list of queue names.
+     */
 
     @Autowired
     private RabbitMQService rabbitMQService;
