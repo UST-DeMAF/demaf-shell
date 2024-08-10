@@ -24,7 +24,6 @@ public class RabbitMQCommand {
      * @param queueIdentifier the name or position of the queue to purge.
      * @return a message indicating the result of the purge operation.
      */
-
     @ShellMethod("Purge the message queue.")
     public String purge(String queueIdentifier) {
         List<String> queueNames = rabbitMQService.getQueueNames();
@@ -51,7 +50,6 @@ public class RabbitMQCommand {
      *
      * @return a list of queue names.
      */
-
     @Autowired
     private RabbitMQService rabbitMQService;
 
