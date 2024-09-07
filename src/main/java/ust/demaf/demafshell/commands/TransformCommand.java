@@ -29,8 +29,11 @@ public class TransformCommand {
             URL location, 
         @ShellOption(value = {"-c", "--commands"}, 
             help = "The commands for executing the deployment model. Use a comma-separated list for specifiying multiple commands.") 
-            List<String> commands
+            List<String> commands,
+        @ShellOption(value = {"-o", "--options"},
+            help = "Options that affect the transformation of the deployment model, e.g. its visualization. Use a comma-separated list to specify multiple options.")
+            List<String> options
         ) {
-            return analysisManagerService.runTransformationProcess(technology, location, commands);      
+            return analysisManagerService.runTransformationProcess(technology, location, commands, options);
     }
 }

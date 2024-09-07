@@ -52,10 +52,11 @@ public class AnalysisManagerService {
      * @param technology
      * @param location
      * @param commands
+     * @param options
      * @return a message to display to the user.
      */
-    public String runTransformationProcess(String technology, URL location, List<String> commands) {
-        TechnologySpecificDeploymentModel tsdm = new TechnologySpecificDeploymentModel(technology, location, commands);        
+    public String runTransformationProcess(String technology, URL location, List<String> commands, List<String> options) {
+        TechnologySpecificDeploymentModel tsdm = new TechnologySpecificDeploymentModel(technology, location, commands, options);
         try {
             UUID transformationProcessId = startTransformationProcess(tsdm);
             terminal.writer().write("Transforming deployment model...");
