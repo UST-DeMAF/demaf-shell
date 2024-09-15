@@ -30,6 +30,7 @@ public class TransformCommand {
           URL location,
       @ShellOption(
               value = {"-c", "--commands"},
+              defaultValue = "",
               help =
                   "The commands for executing the deployment model. Use a comma-separated list for specifiying multiple commands.")
           List<String> commands,
