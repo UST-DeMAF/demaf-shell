@@ -1,6 +1,8 @@
 package ust.demaf.demafshell.commands;
 
+import java.util.ArrayList;
 import java.util.List;
+import org.springframework.amqp.core.QueueInformation;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellCommandGroup;
@@ -43,14 +45,24 @@ public class RabbitMQCommand {
   }
 
   /**
-   * Lists all available RabbitMQ queues.
+   * Lists all available RabbitMQ queues, its names and the number of messages in each queue.
    *
-   * @return a list of queue names.
+   * @return a list of queue details (name - nr. of messages).
    */
   @Autowired private RabbitMQService rabbitMQService;
 
   @ShellMethod("List all available RabbitMQ queues.")
   public List<String> listq() {
-    return rabbitMQService.getQueueNames();
+    List<String> queueNames = rabbitMQService.getQueueNames();
+    List<String> queueDetails = new ArrayList<>();
+
+    for (String queueName : queueNames) {
+      QueueInformation queueInfo = rabbitAdmin.getQueueInfo(queueName);
+      assert queueInfo != null;
+      int messageCount = queueInfo.getMessageCount();
+      queueDetails.add(queueName + " - " + messageCount);
+    }
+
+    return queueDetails;
   }
 }
