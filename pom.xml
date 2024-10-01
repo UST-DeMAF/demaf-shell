@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>ust.demaf</groupId>
 	<artifactId>demaf-shell</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.2.0-SNAPSHOT</version>
 	<name>demaf-shell</name>
 	<description>shell application for the DeMAF</description>
 	<properties>
