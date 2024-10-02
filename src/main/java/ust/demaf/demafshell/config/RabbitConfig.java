@@ -10,18 +10,18 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitConfig {
 
-    @Bean
-    public ConnectionFactory connectionFactory() {
-        return new CachingConnectionFactory("localhost");
-    }
+  @Bean
+  public ConnectionFactory connectionFactory() {
+    return new CachingConnectionFactory("localhost");
+  }
 
-    @Bean
-    public RabbitAdmin rabbitAdmin(RabbitTemplate rabbitTemplate) {
-        return new RabbitAdmin(rabbitTemplate);
-    }
+  @Bean
+  public RabbitAdmin rabbitAdmin(RabbitTemplate rabbitTemplate) {
+    return new RabbitAdmin(rabbitTemplate);
+  }
 
-    @Bean
-    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
-        return new RabbitTemplate(connectionFactory);
-    }
+  @Bean
+  public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
+    return new RabbitTemplate(connectionFactory);
+  }
 }
